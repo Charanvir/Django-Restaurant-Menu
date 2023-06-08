@@ -1,3 +1,17 @@
 from django.shortcuts import render
+from django.views import generic
+from .models import Item
 
-# Create your views here.
+
+# ListView is better to pages which will have lots of data
+# Variables need specific names
+class MenuList(generic.ListView):
+    # variable which will store the list of data
+    queryset = Item.objects.order_by("-date_created")
+    template_name = "index.html"
+
+
+# DetailView is better for individual item views
+class MenuItemDetail(generic.DetailView):
+    model = Item
+    template_name = "menu_item_detail.html"
