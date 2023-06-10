@@ -1,16 +1,26 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport"
-			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Document</title>
-	</head>
-	<body>
-		<h1>Restaurant Menu</h1>
-		{% for meal in meals %}
+{% extends 'base.html' %}
+{% block content %}
+<h1>Restaurant Menu</h1>
+	{% for meal in meals %}
 		<h2>{{ meal.1 }}</h2>
+		{% for row in item_list %}
+			{% if row.meal_type == meal.0 %}
+				{% if row.status == 0 %}
+					<a href="{% url 'menu_item' row.pk %}">
+						<h3>
+							<del>{{ row.meal }}</del>
+						</h3>
+					</a>
+					<p>
+						<del>{{ row.description }}</del>
+					</p>
+					{% else %}
+					<a href="{% url 'menu_item' row.pk %}">
+						<h3>{{ row.meal }}</h3>
+					</a>
+					<p>{{ row.description }}</p>
+				{% endif %}
+			{% endif %}
 		{% endfor %}
-	</body>
-</html>
+	{% endfor %}
+{% endblock content %}
