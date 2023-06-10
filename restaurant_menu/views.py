@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Item
+from .models import Item, MEAL_TYPE
 
 
 # ListView is better to pages which will have lots of data
@@ -11,10 +11,8 @@ class MenuList(generic.ListView):
     template_name = "index.html"
 
     def get_context_data(self):
-        context = {
-            "meals": ["Pizza", "Burrito"],
-            "ingredients": ["Beans", "Cheese", "Green Peppers"]
-        }
+        context = {}
+        context["meals"] = MEAL_TYPE
         return context
 
 

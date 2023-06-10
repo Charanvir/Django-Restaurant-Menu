@@ -9,7 +9,8 @@
 	</head>
 	<body>
 		<h1>Restaurant Menu</h1>
-		<h3>{{ meals }}</h3>
-		<h4>{{ ingredients }}</h4>
+		{% for meal in meals %}
+		<h2>{{ meal.1 }}</h2>
+		{% endfor %}
 	</body>
 </html>
